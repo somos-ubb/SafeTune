@@ -1,0 +1,1 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><path d="M34.429,1a2,2,0,0,0-2,2V17.714L4,1.306A2,2,0,0,0,1,3.034V38.963A2,2,0,0,0,4,40.7L32.429,24.283V39a2,2,0,0,0,2,2H39a2,2,0,0,0,2-2V3a2,2,0,0,0-2-2Z" transform="translate(-1 -1)" fill="#fff"/></svg>

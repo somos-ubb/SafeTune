@@ -1,0 +1,9 @@
+.env
+core
+certificates
+ecosystem.config.js
+node_modules
+app/utility/model/bert
+app/utility/model/tokenizer
+app/utility/model/best_state
+app/utility/model/best_model_state.bin

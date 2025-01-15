@@ -1,0 +1,1 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="42" viewBox="0 0 22 42"><text transform="translate(0 34)" fill="#fff" font-size="38" font-family="ArialMT, Arial"><tspan x="0" y="0">?</tspan></text></svg>

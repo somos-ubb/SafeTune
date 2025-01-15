@@ -1,0 +1,1 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="43.968" height="50" viewBox="0 0 43.968 50"><path d="M3,3.519A2.5,2.5,0,0,1,6.757,1.348l38.961,22.5a2.5,2.5,0,0,1,0,4.336L6.757,50.677A2.5,2.5,0,0,1,3,48.509Z" transform="translate(-3 -1.012)" fill="#fff"/></svg>

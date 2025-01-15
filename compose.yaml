@@ -1,0 +1,85 @@
+services:
+  traefik:
+    image: traefik:v2.9
+    ports:
+      - "80:80"    # HTTP
+      - "443:443"  # HTTPS
+      - "8081:8081"
+    command:
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--entrypoints.dashboard.address=:8081"
+      - "--providers.docker=true"
+      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+      - "--certificatesresolvers.myresolver.acme.email=pgomez@ucsc.cl"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+    volumes:
+      - "./letsencrypt:/letsencrypt"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    networks:
+      - web
+
+  mysqldb:
+    image: mysql
+    env_file:
+      - path: .env
+        required: true
+    ports:
+      - 3308:3306
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    networks:
+      - web
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - mysqldb
+    environment:
+      - PMA_HOST=mysqldb
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    ports:
+      - 8080:80  # Exposes phpMyAdmin on port 8080
+    restart: always
+    networks:
+      - web
+  
+  backend:
+    build: BackendTesis
+    env_file:
+      - path: BackendTesis/.env
+        required: true
+    depends_on:
+      - mysqldb
+    ports:
+      - "5000"
+    volumes:
+      - ./BackendTesis:/app
+      - /app/node_modules
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.backend.rule=Host(`condor.ucsc.cl`) && (PathPrefix(`/auth`) || PathPrefix(`/api`) || PathPrefix(`/administrator`))"
+      - "traefik.http.routers.backend.entrypoints=websecure"
+      - "traefik.http.routers.backend.tls.certresolver=myresolver"
+      - "traefik.http.services.backend.loadbalancer.server.port=5000"
+    networks:
+      - web
+
+  frontend:
+    build: FrontendTesis
+    ports:
+      - "3000"
+    volumes:
+      - ./FrontendTesis:/app
+      - /app/node_modules
+    labels:
+      - "traefik.http.routers.frontend.rule=Host(`condor.ucsc.cl`) && !(PathPrefix(`/auth`) || PathPrefix(`/api`) || PathPrefix(`/administrator`))"  # Cambia "tu-dominio.com"
+      - "traefik.http.routers.frontend.entrypoints=websecure"
+      - "traefik.http.routers.frontend.tls.certresolver=myresolver"
+      - "traefik.http.services.frontend.loadbalancer.server.port=3000"  # Puerto interno del servicio
+    networks:
+      - web
+
+networks:
+  web:
+    driver: bridge

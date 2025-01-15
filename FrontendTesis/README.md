@@ -1,7 +1,7 @@
-# Frontend en desarrollo
+# Frontend Under Development
 
-Este proyecto ha sido modificado para montar con docker a través de un Docker Compose junto con el Back
+This project has been modified to be deployed via Docker using Docker Compose together with the backend.
 
-## Que necesita y no esta subido a repo
+## Required but not included in the repository
 
-Archivo .env (guardar en base)
+- The `.env` file (store it in the base directory).

@@ -1,34 +1,33 @@
-# Violencia de Género Tesis
+# Gender-Based Violence Thesis
 
-Esta es la tesis de Violencia de Género, tanto backend como frontend
+This is the thesis on gender-based violence, including both the backend and frontend.
 
-## Que falta
+## What’s missing
 
-Archivos .env + modelo entrenado ML, pedir a desarrollador
+`.env` files + the trained ML model. Please request these from the developer.
 
-## Cómo ejecutar
+## How to run
 
-Primero tener instalado Docker Engine, Docker Desktop o similares
+1. Make sure you have Docker Engine, Docker Desktop, or a similar tool installed.  
+2. (Optional) Install **Make**.
 
-Make (opcional)
-
-Luego ejecutar los siguientes comandos:
+Then, run the following commands:
 
 ```bash
 docker compose up --build
 docker compose run --rm backend bash -c "npx knex migrate:latest; python3 ./app/utility/model/downloader.py"
 ```
-o si tienes Make instalado
+
+Or, if you have **Make** installed:
 
 ```bash
 make build-up
 make setup-start
 ```
 
-Y con esto se migrarán las tablas a la base de datos y la app debería estar lista para usarse.
+This will migrate the tables to the database, and the app should be ready to use.
 
-## Direcciones
+## Addresses
 
-Frontend: localhost:3000
-
-PhpMyAdmin: localhost:8080
+- Frontend: `http://localhost:3000`
+- PhpMyAdmin: `http://localhost:8080`

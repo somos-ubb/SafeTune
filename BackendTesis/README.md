@@ -1,9 +1,8 @@
-# Backend en desarrollo
+# Backend Under Development
 
-Este proyecto ha sido modificado para montar con docker a través de un Docker Compose junto con el Front
+This project has been modified to be deployed via Docker using Docker Compose together with the frontend.
 
-## Que necesita y no esta subido a repo
+## Required but not included in the repository
 
-Archivo .env (gguardar en base)
-
-Archivo best_model_state.bin (muy pesado para GitHub, guardar en app/utility/model/best_state)
+- `.env` file (place it in the base directory)
+- `best_model_state.bin` file (too large for GitHub; place it in `app/utility/model/best_state`)

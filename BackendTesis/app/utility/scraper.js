@@ -23,7 +23,7 @@ async function scrape(nombre, artista) {
         await page.goto('https://www.letras.com/');
 
         // Wait for the search input and type the cleaned search query
-        const input = await page.waitForSelector('.header-search-input', { timeout: 1000 });
+        const input = await page.waitForSelector('.searchBar-input', { timeout: 1000 });
         await input.type(`${cleanedNombre} ${artista} `);
 
         // Wait for the suggest-song to appear

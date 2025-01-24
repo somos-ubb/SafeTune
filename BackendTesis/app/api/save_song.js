@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
         if(cancion && cancion.letra){
             letra = cancion.letra;
         }
-        if (!cancion) {
+        if (!cancion || !cancion.letra) {
             letra = await scrape(nombreCancion, artist);
             // Si la canción no existe, insertela en la base de datos
             await knex('canciones')
